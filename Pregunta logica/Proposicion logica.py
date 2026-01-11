@@ -2,10 +2,10 @@ import tkinter as tk           # Librería para crear interfaz gráfica
 import tkinter.messagebox as messagebox  # Para mostrar cuadros de diálogo
 
 from random import randint     # Generacion de valores pseudoaleatorios enteros
-from enum import Enum          # Para definir constantes con una sintaxis fácil de organizar y leer
+from enum import StrEnum          # Para definir constantes con una sintaxis fácil de organizar y leer
 
 
-class Color(Enum):
+class Color(StrEnum):
     FONDO      = "#1e1e1e"
     TEXTO      = "#ffffff"
     CAJA_TEXTO = "#333333"
@@ -23,7 +23,7 @@ class Logica:
         self.ventana_raiz = ventana_raiz
         self.ventana_raiz.title("Evaluador de Lógica (Modo Oscuro)")
         self.ventana_raiz.geometry("500x500")
-        self.ventana_raiz.configure(bg=Color.FONDO.value)
+        self.ventana_raiz.configure(bg=Color.FONDO)
 
         # Proposiciones del problema
         lbl_desc = tk.Label(
@@ -31,7 +31,7 @@ class Logica:
             text    = "Proposiciones:\n p(x): x <= 7\n q(x): x + 3 es impar\n r(x): x < 3",
             font    = ("Arial", 14),
             bg      ="#2d2d2d",
-            fg      = Color.TEXTO.value,
+            fg      = Color.TEXTO,
             justify = "left",
             padx    = 20,
             pady    = 20
@@ -43,12 +43,12 @@ class Logica:
             master = ventana_raiz,
             text   = "Determine: [p(a) v q(b)] -> r(c)",
             font   = ("Arial", 18, "bold"),
-            bg     = Color.FONDO.value,
+            bg     = Color.FONDO,
             fg     = "#3a7cb3"
         )
         lbl_formula.pack(pady=10)
 
-        frame_entradas = tk.Frame(ventana_raiz, bg=Color.FONDO.value)
+        frame_entradas = tk.Frame(ventana_raiz, bg=Color.FONDO)
         frame_entradas.pack(pady=10)
 
         # Variables en donde se guarda la entrada de usuario.
@@ -67,11 +67,11 @@ class Logica:
             master              = ventana_raiz,
             text                = "Generar Datos Aleatorios",
             command             = self.__generar_valores_aleatorios,
-            bg                  = Color.BOTON_BG.value,
-            fg                  = Color.TEXTO.value,
+            bg                  = Color.BOTON_BG,
+            fg                  = Color.TEXTO,
             cursor              = "hand2",
             activebackground    = "#005f99",
-            activeforeground    = Color.TEXTO.value
+            activeforeground    = Color.TEXTO
         )
         btn_random.pack(pady=5)
 
@@ -83,13 +83,13 @@ class Logica:
             master = ventana_raiz,
             text   = "¿Cuál es el valor de verdad?",
             font   = ("Arial", 12),
-            bg     = Color.FONDO.value,
-            fg     = Color.TEXTO.value
+            bg     = Color.FONDO,
+            fg     = Color.TEXTO
         )
         lbl_pregunta.pack()
 
         # Marco para los botones VERDADERO / FALSO
-        frame_botones = tk.Frame(ventana_raiz, bg=Color.FONDO.value)
+        frame_botones = tk.Frame(ventana_raiz, bg=Color.FONDO)
         frame_botones.pack(pady=10)
 
         btn_true = tk.Button(
@@ -118,7 +118,7 @@ class Logica:
         btn_false.pack(side="left", padx=10)
 
         # Etiqueta para mostrar el resultado
-        self.lbl_resultado = tk.Label(ventana_raiz, text="", font=("Arial", 12, "bold"), bg=Color.FONDO.value)
+        self.lbl_resultado = tk.Label(ventana_raiz, text="", font=("Arial", 12, "bold"), bg=Color.FONDO)
         self.lbl_resultado.pack(pady=10)
 
         self.__generar_valores_aleatorios()
@@ -132,11 +132,11 @@ class Logica:
         :param texto_etiqueta: Texto de la etiqueta sobre cada entrada
         :param variable: referencia a la variable de Tkinter que almacenará el valor ingresado
         """
-        frame = tk.Frame(padre, bg=Color.FONDO.value)
+        frame = tk.Frame(padre, bg=Color.FONDO)
         frame.pack(side="left", padx=10)
 
         # Etiqueta (a:, b:, c:)
-        tk.Label(frame, text=texto_etiqueta, bg=Color.FONDO.value, fg=Color.TEXTO.value).pack()
+        tk.Label(frame, text=texto_etiqueta, bg=Color.FONDO, fg=Color.TEXTO).pack()
 
         # Caja de texto (Entry)
         tk.Entry(
@@ -145,8 +145,8 @@ class Logica:
             width            = 5,
             justify          = "center",
             font             = ("Arial", 11),
-            bg               = Color.CAJA_TEXTO.value,
-            fg               = Color.TEXTO.value,
+            bg               = Color.CAJA_TEXTO,
+            fg               = Color.TEXTO,
             validate         = "key",
             validatecommand  = (frame.register(lambda P: P.isdigit()), "%S"),   # Solo permite dígitos enteros
             insertbackground = "white"
