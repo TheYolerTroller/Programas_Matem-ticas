@@ -1,6 +1,5 @@
 import numpy as np                      # Libreria para las operaciones matemáticas 
 import matplotlib.pyplot as plt         # Creación de  graficos
-from mpl_toolkits.mplot3d import axes3d # Módulo para el dibijo 3D
 
 # Rango para la curva y el ángulo
 u = np.linspace(-1, 2, 60)      # Creamos 60 puntos entre -1 y 2 
